@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Rivalizer</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="placeholder_short">Placeholder Text</string>
+    <string name="games">Juegos</string>
+    <string name="places">Lugares</string>
+    <string name="rivals">Rivales</string>
+</resources>
