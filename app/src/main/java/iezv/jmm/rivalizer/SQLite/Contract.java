@@ -47,4 +47,24 @@ public class Contract {
             PlaceTable.REVIEW+" text)";
     public static final String SQL_DROP_PLACES = " drop table if exists " + PlaceTable.TABLE;
 
+    public static abstract class RivalTable implements BaseColumns{
+        public static final String TABLE = "rivals";
+        public static final String CLOUDID = "cloud_id";
+        public static final String NAME = "name";
+        public static final String FPLACE = "fplace";
+        public static final String URLPHOTO = "url_photo";
+        public static final String IDGAMES = "ID_games";
+    }
+
+    public static final String SQL_CREATE_RIVALS =
+            "create table"+RivalTable.TABLE+" ("+
+            RivalTable._ID+" integer primary key autoincrement, "+
+            RivalTable.CLOUDID+" text, "+
+            RivalTable.NAME  + " text, "+
+            RivalTable.FPLACE + " text, "+
+            RivalTable.URLPHOTO + " urlphoto, "+
+            RivalTable.IDGAMES + " integer)";
+    public static final String SQL_DROP_RIVALS = " drop table if exists " + RivalTable.TABLE;
+
+
 }

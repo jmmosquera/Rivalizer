@@ -51,14 +51,14 @@ public class GameFragment extends Fragment {
     }
 
     private void fakeGames(){
-        myGames.add(new Game(1, "Risk", "https://images-na.ssl-images-amazon.com/images/I/81kgxqmzvoL._SX679_.jpg", "", ""));
-        myGames.add(new Game(1, "Ajedrez", "https://si.wsj.net/public/resources/images/BN-GJ136_chess_P_20150109120327.jpg", "", ""));
-        myGames.add(new Game(1, "Magic, the Gathering", "https://i.ebayimg.com/images/i/141014598087-0-1/s-l1000.jpg", "", ""));
-        myGames.add(new Game(1, "Dungeons & Dragons", "https://img.apmcdn.org/c0e5a68d0a004c21c6eef836ba64ebb31dcec18c/uncropped/3b6675-20090410-dungeonsdragons.jpg", "", ""));
-        myGames.add(new Game(1, "Risk", "https://images-na.ssl-images-amazon.com/images/I/81kgxqmzvoL._SX679_.jpg", "", ""));
-        myGames.add(new Game(1, "Ajedrez", "https://si.wsj.net/public/resources/images/BN-GJ136_chess_P_20150109120327.jpg", "", ""));
-        myGames.add(new Game(1, "Magic, the Gathering", "https://i.ebayimg.com/images/i/141014598087-0-1/s-l1000.jpg", "", ""));
-        myGames.add(new Game(1, "Dungeons & Dragons", "https://img.apmcdn.org/c0e5a68d0a004c21c6eef836ba64ebb31dcec18c/uncropped/3b6675-20090410-dungeonsdragons.jpg", "", ""));
+        myGames.add(new Game(1,"",  "Risk", "https://images-na.ssl-images-amazon.com/images/I/81kgxqmzvoL._SX679_.jpg", "", ""));
+        myGames.add(new Game(1,"",  "Ajedrez", "https://si.wsj.net/public/resources/images/BN-GJ136_chess_P_20150109120327.jpg", "", ""));
+        myGames.add(new Game(1,"",  "Magic, the Gathering", "https://i.ebayimg.com/images/i/141014598087-0-1/s-l1000.jpg", "", ""));
+        myGames.add(new Game(1,"",  "Dungeons & Dragons", "https://img.apmcdn.org/c0e5a68d0a004c21c6eef836ba64ebb31dcec18c/uncropped/3b6675-20090410-dungeonsdragons.jpg", "", ""));
+        myGames.add(new Game(1,"",  "Risk", "https://images-na.ssl-images-amazon.com/images/I/81kgxqmzvoL._SX679_.jpg", "", ""));
+        myGames.add(new Game(1,"",  "Ajedrez", "https://si.wsj.net/public/resources/images/BN-GJ136_chess_P_20150109120327.jpg", "", ""));
+        myGames.add(new Game(1,"",  "Magic, the Gathering", "https://i.ebayimg.com/images/i/141014598087-0-1/s-l1000.jpg", "", ""));
+        myGames.add(new Game(1,"",  "Dungeons & Dragons", "https://img.apmcdn.org/c0e5a68d0a004c21c6eef836ba64ebb31dcec18c/uncropped/3b6675-20090410-dungeonsdragons.jpg", "", ""));
     }
 
 

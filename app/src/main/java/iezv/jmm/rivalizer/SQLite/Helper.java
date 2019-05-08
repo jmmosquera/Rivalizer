@@ -17,12 +17,14 @@ public class Helper  extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db){
         db.execSQL(Contract.SQL_CREATE_GAMES);
         db.execSQL(Contract.SQL_CREATE_PLACES);
+        db.execSQL(Contract.SQL_CREATE_RIVALS);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersiun, int newVersion){
         db.execSQL(Contract.SQL_DROP_GAMES);
         db.execSQL(Contract.SQL_DROP_PLACES);
+        db.execSQL(Contract.SQL_DROP_RIVALS);
 
         onCreate(db);
     }
