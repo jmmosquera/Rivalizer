@@ -33,4 +33,25 @@
     <string name="password_text">Elige una clave segura.</string>
     <string name="confirm_password_text">Confirma tu contraseña:</string>
     <string name="confirm_password_write">Recuerda que deben ser iguales.</string>
+    <string name="title_activity_place_register">PlaceRegister</string>
+    <string name="local_name_text">Nombre del local:</string>
+    <string name="local_name_write">Procura utilizar el nombre exacto</string>
+    <string name="localization">Selecciona su ubicación:</string>
+    <string name="review_text">Escribe una breve reseña:</string>
+    <string name="review_local_write">Procura ser claro, neutral y no emplear demasiadas palabras.</string>
+    <string name="local_uri_photo">Elige una imagen representativa del local:</string>
+    <string name="place_send">Envía este local</string>
+    <string name="title_activity_place_view">PlaceView</string>
+    <string name="title_activity_login_view">LoginView</string>
+    <string name="login_name_text">Introduce tu email:</string>
+    <string name="login_password_text">Introduce tu clave de acceso:</string>
+    <string name="button_login">IDENTIFICATE</string>
+    <string name="fulfill_register">Completar Registro</string>
+    <string name="go_register">Registrate</string>
+    <string name="title_activity_player_location">PlayerLocation</string>
+    <string name="set_your_location">Indica tu ubicación:</string>
+    <string name="write_zip_code">Indica tu código postal (opcional, indícalo para ver las tiendas cercanas):</string>
+    <string name="zip_code_hint">Otros usuarios no verán esta información.</string>
+    <string name="upload_photo">Subir foto</string>
+    <string name="add_to_your_games">Añadir a tus juegos</string>
 </resources>

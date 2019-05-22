@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "95051477978",
+    "firebase_url": "https://rivalizer-1ec50.firebaseio.com",
+    "project_id": "rivalizer-1ec50",
+    "storage_bucket": "rivalizer-1ec50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95051477978:android:4d0cafed56e260ac",
+        "android_client_info": {
+          "package_name": "iezv.jmm.rivalizer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95051477978-o1nhu1r3hqegb1ddhboonqihcp5mg2qn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM9qni4YqlzN4k6pqZOedSzyQbeApQcRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "95051477978-o1nhu1r3hqegb1ddhboonqihcp5mg2qn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

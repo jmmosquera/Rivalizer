@@ -103,6 +103,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvAvPlaces"
         android:layout_width="395dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -131,7 +132,7 @@
         app:layout_constraintGuide_percent="0.4" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/gameRules"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -154,7 +155,7 @@
         app:layout_constraintGuide_percent="0.6" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/gameDesc"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -170,7 +171,7 @@
         app:layout_constraintTop_toBottomOf="@+id/whereLabel3" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/gamePhotoFull"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -180,11 +181,27 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/addUserToGame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/gameName"
         app:srcCompat="@drawable/ic_launcher_background" />
+
+    <Button
+        android:id="@+id/addUserToGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/add_to_your_games"
+        app:layout_constraintBottom_toTopOf="@+id/gameRules"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/gameDesc"
+        app:layout_constraintTop_toBottomOf="@+id/gameDesc" />
 
 
 </android.support.constraint.ConstraintLayout>

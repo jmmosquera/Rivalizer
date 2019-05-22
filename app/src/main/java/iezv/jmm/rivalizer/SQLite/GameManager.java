@@ -25,7 +25,7 @@ public class GameManager {
 
     public long insert(Game game){
         ContentValues values = new ContentValues();
-        values.put(Contract.GameTable.CLOUDID, game.getCloudId());
+        // values.put(Contract.GameTable.CLOUDID, game.getCloudId());
         values.put(Contract.GameTable.NAME, game.getName());
         if(game.getUrlPhoto()!=null) {
             values.put(Contract.GameTable.URLPHOTO, game.getUrlPhoto());
@@ -48,7 +48,7 @@ public class GameManager {
     public int update(Game game){
         ContentValues values = new ContentValues();
 
-        values.put(Contract.GameTable.CLOUDID, game.getCloudId());
+        // values.put(Contract.GameTable.CLOUDID, game.getCloudId());
         values.put(Contract.GameTable.NAME, game.getName());
         if(game.getUrlPhoto()!=null) {
             values.put(Contract.GameTable.URLPHOTO, game.getUrlPhoto());
@@ -71,12 +71,12 @@ public class GameManager {
 
     public Game getRow(Cursor c){
         Game game = new Game();
-        game.setIdGame(c.getInt(0));
-        game.setCloudId(c.getString(1));
-        game.setName(c.getString(2));
-        game.setUrlPhoto(c.getString(3));
-        game.setDescription(c.getString(4));
-        game.setRules(c.getString(5));
+        game.setIdGame(c.getString(0));
+        // game.setCloudId(c.getString(1));
+        game.setName(c.getString(1));
+        game.setUrlPhoto(c.getString(2));
+        game.setDescription(c.getString(3));
+        game.setRules(c.getString(4));
 
         return game;
     }
@@ -84,7 +84,7 @@ public class GameManager {
     public Game get(int id){
         String[] projection = {
                 Contract.GameTable._ID,
-                Contract.GameTable.CLOUDID,
+                // Contract.GameTable.CLOUDID,
                 Contract.GameTable.NAME,
                 Contract.GameTable.URLPHOTO,
                 Contract.GameTable.DESCRIPTION,

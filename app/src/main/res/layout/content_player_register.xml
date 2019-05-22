@@ -33,6 +33,7 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/email_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email_write" />
@@ -45,6 +46,7 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/name_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/name_write" />
@@ -53,28 +55,42 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            tools:text="@string/placeholder_short" />
+            android:text="@string/write_zip_code"
+            android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/zip_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/placeholder_short" />
+            android:hint="@string/zip_code_hint" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView6"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/profile_uri_text"
-                android:textSize="18sp" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_uri_text"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/upload_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upload_photo" />
+            </LinearLayout>
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/game_prev"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_launcher_background" />
@@ -89,6 +105,7 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/password_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_text"
@@ -102,16 +119,18 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/password_register_repeat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/confirm_password_write"
             android:password="true" />
 
         <Button
+            android:id="@+id/fulfill_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="@string/send_game" />
+            android:text="@string/fulfill_register" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
