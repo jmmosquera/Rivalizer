@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_place_view">
 
     <ImageView
-        android:id="@+id/photoPlace"
+        android:id="@+id/photoPlaceView"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginBottom="8dp"
@@ -26,13 +26,13 @@
         android:layout_height="0dp"
         android:background="@drawable/place_gradient"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/photoPlace"
-        app:layout_constraintEnd_toEndOf="@+id/photoPlace"
-        app:layout_constraintStart_toStartOf="@+id/photoPlace"
-        app:layout_constraintTop_toTopOf="@+id/photoPlace" />
+        app:layout_constraintBottom_toBottomOf="@+id/photoPlaceView"
+        app:layout_constraintEnd_toEndOf="@+id/photoPlaceView"
+        app:layout_constraintStart_toStartOf="@+id/photoPlaceView"
+        app:layout_constraintTop_toTopOf="@+id/photoPlaceView" />
 
     <TextView
-        android:id="@+id/placeAdscribed"
+        android:id="@+id/placeAdscribedView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -41,11 +41,11 @@
         android:text="@string/placeholder_short"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/placeDistance"
-        app:layout_constraintTop_toTopOf="@+id/placeDistance" />
+        app:layout_constraintStart_toEndOf="@+id/placeDistanceView"
+        app:layout_constraintTop_toTopOf="@+id/placeDistanceView" />
 
     <TextView
-        android:id="@+id/placeDistance"
+        android:id="@+id/placeDistanceView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -55,24 +55,25 @@
         android:text="@string/placeholder_short"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/placeName"
+        app:layout_constraintBottom_toTopOf="@+id/placeNameView"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/placeName"
+        android:id="@+id/placeNameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/placeholder_short"
+        android:text="@string/review"
         android:textColor="@color/colorPrimary"
-        android:textSize="30sp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/reviewPlaceView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -82,9 +83,67 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/placeName" />
+        app:layout_constraintTop_toBottomOf="@+id/placeNameView" />
+
+    <Button
+        android:id="@+id/adscribeUnadscribe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/unadscribe_to"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/viewPlaceMap"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/viewPlaceMap"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/view_map_place"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/adscribeUnadscribe" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <TextView
+        android:id="@+id/whereLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="start"
+        android:text="@string/available_games"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvAvGames"
+        android:layout_width="395dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/adscribeUnadscribe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whereLabel" />
 
 </android.support.constraint.ConstraintLayout>

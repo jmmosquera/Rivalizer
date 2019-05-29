@@ -72,8 +72,8 @@ public class PlayerRegister extends AppCompatActivity {
         passwordRegister = findViewById(R.id.password_register);
         getPasswordRegisterRepeat = findViewById(R.id.password_register_repeat);
         fulfillRegister = findViewById(R.id.fulfill_register);
-        uploadPhoto = findViewById((R.id.upload_photo));
-        avatarPrev = findViewById(R.id.game_prev);
+        uploadPhoto = findViewById((R.id.upload_photo_place));
+        avatarPrev = findViewById(R.id.place_prev);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

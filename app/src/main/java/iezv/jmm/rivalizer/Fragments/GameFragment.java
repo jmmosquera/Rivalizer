@@ -1,6 +1,9 @@
 package iezv.jmm.rivalizer.Fragments;
 
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.ImageButton;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import iezv.jmm.rivalizer.Adapters.GameAdapter;
-import iezv.jmm.rivalizer.MainActivity;
 import iezv.jmm.rivalizer.POJO.Game;
 import iezv.jmm.rivalizer.R;
 import iezv.jmm.rivalizer.Views.GameRegister;
@@ -37,6 +38,7 @@ public class GameFragment extends Fragment {
     private RecyclerView rvGames;
     private List<Game> myGames = new ArrayList<Game>();
     private ImageButton goRegister;
+
 
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     DatabaseReference ref = database.child("games");
@@ -51,12 +53,14 @@ public class GameFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         rvGames = (RecyclerView) getView().findViewById(R.id.rvGames);
-        goRegister = (ImageButton) getView().findViewById(R.id.btn_register_game);
+        goRegister = (ImageButton) getView().findViewById(R.id.btn_register_place);
 
         fakeGames();
         initRecycler();
         listener();
+
     }
+
 
     private void initRecycler() {
         final GameAdapter adapter = new GameAdapter(getActivity());
@@ -121,39 +125,39 @@ public class GameFragment extends Fragment {
             }
         });
 
-    rvGames.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-        @Override
-        public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-            View child = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+        rvGames.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+                View child = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
 
-            if (child != null && mGestureDetector.onTouchEvent(motionEvent)) {
+                if (child != null && mGestureDetector.onTouchEvent(motionEvent)) {
 
-                int position = recyclerView.getChildAdapterPosition(child);
-                Game item = myGames.get(position);
-                /*if(filtering){
-                    item = filteredBooks.get(position);
-                }else {
-                    item = myBooks.get(position);
-                }*/
-                Intent intent = new Intent(getActivity(), GameView.class);
-                intent.putExtra("game", item);
-                startActivity(intent);
+                    int position = recyclerView.getChildAdapterPosition(child);
+                    Game item = myGames.get(position);
+                    /*if(filtering){
+                        item = filteredBooks.get(position);
+                    }else {
+                        item = myBooks.get(position);
+                    }*/
+                    Intent intent = new Intent(getActivity(), GameView.class);
+                    intent.putExtra("game", item);
+                    startActivity(intent);
 
-                return true;
+                    return true;
+                }
+                return false;
             }
-            return false;
-        }
 
-        @Override
-        public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
 
-        }
+            }
 
-        @Override
-        public void onRequestDisallowInterceptTouchEvent(boolean b) {
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean b) {
 
-        }
-    });
+            }
+        });
 
     }
 

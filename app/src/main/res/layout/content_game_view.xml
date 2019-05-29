@@ -53,18 +53,17 @@
         card_view:layout_constraintTop_toTopOf="parent">
 
 
+
         <ImageView
             android:id="@+id/gamePhoto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@android:drawable/progress_horizontal"
             app:layout_constraintBottom_toTopOf="@+id/gameName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -197,7 +196,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/add_to_your_games"
+        android:text="@string/remove_from_your_games"
         app:layout_constraintBottom_toTopOf="@+id/gameRules"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/gameDesc"

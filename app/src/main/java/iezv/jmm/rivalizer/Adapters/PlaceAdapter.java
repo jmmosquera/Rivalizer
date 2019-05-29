@@ -29,10 +29,10 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
 
         private PlaceViewHolder(View itemView){
             super(itemView);
-            placeName = itemView.findViewById(R.id.placeName);
-            photoPlace = itemView.findViewById(R.id.photoPlace);
-            placeAdscribed = itemView.findViewById(R.id.placeAdscribed);
-            placeDistance = itemView.findViewById(R.id.placeDistance);
+            placeName = itemView.findViewById(R.id.placeNameView);
+            photoPlace = itemView.findViewById(R.id.photoPlaceView);
+            placeAdscribed = itemView.findViewById(R.id.placeAdscribedView);
+            placeDistance = itemView.findViewById(R.id.placeDistanceView);
         }
     }
 
@@ -57,7 +57,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
             Place current = mPlaces.get(position);
             holder.placeName.setText(current.getName());
             holder.placeDistance.setText(current.getCoordinates());
-            holder.placeAdscribed.setText(current.getAddress());
+            holder.placeAdscribed.setText("5");
             String photoLink = current.getUrlPhoto();
             Picasso.with(context).load(Uri.parse(photoLink)).into(holder.photoPlace);
         }

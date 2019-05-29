@@ -25,7 +25,6 @@ public class PlaceManager {
 
     public long insert(Place place){
         ContentValues values = new ContentValues();
-        values.put(Contract.PlaceTable.CLOUDID, place.getCloudId());
         values.put(Contract.PlaceTable.NAME, place.getName());
         values.put(Contract.PlaceTable.ADDRESS, place.getAddress());
         values.put(Contract.PlaceTable.COORDINATES, place.getCoordinates());
@@ -48,7 +47,6 @@ public class PlaceManager {
 
     public int update(Place place) {
         ContentValues values = new ContentValues();
-        values.put(Contract.PlaceTable.CLOUDID, place.getCloudId());
         values.put(Contract.PlaceTable.NAME, place.getName());
         values.put(Contract.PlaceTable.ADDRESS, place.getAddress());
         values.put(Contract.PlaceTable.COORDINATES, place.getCoordinates());
@@ -72,13 +70,12 @@ public class PlaceManager {
 
     public Place getRow(Cursor c){
         Place place = new Place();
-        place.setIdPlace(c.getInt(0));
-        place.setCloudId(c.getString(1));
-        place.setName(c.getString(2));
-        place.setAddress(c.getString(3));
-        place.setCoordinates(c.getString(4));
-        place.setUrlPhoto(c.getString(5));
-        place.setReview(c.getString(6));
+        place.setIdPlace(c.getString(0));
+        place.setName(c.getString(1));
+        place.setAddress(c.getString(2));
+        place.setCoordinates(c.getString(3));
+        place.setUrlPhoto(c.getString(4));
+        place.setReview(c.getString(5));
 
         return place;
     }

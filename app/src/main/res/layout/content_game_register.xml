@@ -80,7 +80,7 @@
                     android:textSize="18sp" />
 
                 <Button
-                    android:id="@+id/upload_photo"
+                    android:id="@+id/upload_photo_place"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/upload_photo" />
@@ -89,7 +89,7 @@
 
 
             <ImageView
-                android:id="@+id/game_prev"
+                android:id="@+id/place_prev"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_launcher_background" />

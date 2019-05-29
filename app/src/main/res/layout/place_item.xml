@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/photoPlace"
+        android:id="@+id/photoPlaceView"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginBottom="8dp"
@@ -23,13 +23,13 @@
         android:layout_height="0dp"
         android:background="@drawable/place_gradient"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/photoPlace"
-        app:layout_constraintEnd_toEndOf="@+id/photoPlace"
-        app:layout_constraintStart_toStartOf="@+id/photoPlace"
-        app:layout_constraintTop_toTopOf="@+id/photoPlace" />
+        app:layout_constraintBottom_toBottomOf="@+id/photoPlaceView"
+        app:layout_constraintEnd_toEndOf="@+id/photoPlaceView"
+        app:layout_constraintStart_toStartOf="@+id/photoPlaceView"
+        app:layout_constraintTop_toTopOf="@+id/photoPlaceView" />
 
     <TextView
-        android:id="@+id/placeAdscribed"
+        android:id="@+id/placeAdscribedView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -40,10 +40,10 @@
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/placeDistance" />
+        app:layout_constraintStart_toEndOf="@+id/placeDistanceView" />
 
     <TextView
-        android:id="@+id/placeDistance"
+        android:id="@+id/placeDistanceView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -57,7 +57,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/placeName"
+        android:id="@+id/placeNameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -66,6 +66,6 @@
         android:text="@string/placeholder_short"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/placeDistance"
+        app:layout_constraintBottom_toTopOf="@+id/placeDistanceView"
         app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

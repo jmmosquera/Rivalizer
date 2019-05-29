@@ -36,7 +36,7 @@
     <string name="title_activity_place_register">PlaceRegister</string>
     <string name="local_name_text">Nombre del local:</string>
     <string name="local_name_write">Procura utilizar el nombre exacto</string>
-    <string name="localization">Selecciona su ubicación:</string>
+    <string name="localization">Escribe la dirección:</string>
     <string name="review_text">Escribe una breve reseña:</string>
     <string name="review_local_write">Procura ser claro, neutral y no emplear demasiadas palabras.</string>
     <string name="local_uri_photo">Elige una imagen representativa del local:</string>
@@ -54,4 +54,12 @@
     <string name="zip_code_hint">Otros usuarios no verán esta información.</string>
     <string name="upload_photo">Subir foto</string>
     <string name="add_to_your_games">Añadir a tus juegos</string>
+    <string name="remove_from_your_games">Quitar de tus juegos</string>
+    <string name="adscribe_to">Adscribirse</string>
+    <string name="view_map_place">Ver en el mapa</string>
+    <string name="unadscribe_to">Desadscribirse</string>
+    <string name="title_activity_generic_view">GenericView</string>
+    <string name="forward">Adelante</string>
+    <string name="review">Reseña</string>
+    <string name="available_games">Juegos Disponibles</string>
 </resources>

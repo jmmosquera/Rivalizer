@@ -27,8 +27,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
         private GameViewHolder(View itemView){
             super(itemView);
-            gameName = itemView.findViewById(R.id.gameName);
-            gamePhoto = itemView.findViewById(R.id.gamePhoto);
+            gameName = itemView.findViewById(R.id.genericName);
+            gamePhoto = itemView.findViewById(R.id.genericPhoto);
         }
     }
 
