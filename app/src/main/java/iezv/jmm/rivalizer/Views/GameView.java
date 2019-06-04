@@ -234,6 +234,8 @@ public class GameView extends AppCompatActivity {
                         place.setAddress(child.child("address").getValue(String.class));
                         place.setUrlPhoto(child.child("urlPhoto").getValue(String.class));
                         place.setReview(child.child("review").getValue(String.class));
+                        int playersAdscribed = (int) child.child("players").getChildrenCount();
+                        place.setPlayersAdscribed(playersAdscribed);
                         playablePlaces.add(place);
                     }
                 }

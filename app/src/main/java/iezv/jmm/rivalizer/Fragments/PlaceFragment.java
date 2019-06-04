@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.SearchView;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -33,6 +34,8 @@ import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import iezv.jmm.rivalizer.Adapters.PlaceAdapter;
@@ -47,7 +50,10 @@ public class PlaceFragment extends Fragment {
 
     private RecyclerView rvPlaces;
     private List<Place> myPlaces = new ArrayList<Place>();
+    private List<Place> filteredList = new ArrayList<Place>();
     private ImageButton goRegister;
+    private SearchView searchInPlaces;
+    public boolean filtering = false;
 
 
     Location myLocation = null;
@@ -69,11 +75,12 @@ public class PlaceFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         rvPlaces = (RecyclerView) getView().findViewById(R.id.rvPlaces);
         goRegister = (ImageButton) getView().findViewById(R.id.btn_register_place);
+        searchInPlaces = (SearchView) getView().findViewById(R.id.searchInPlaces);
 
         location();
         fakePlaces();
         //setDistances();
-
+        setupSearch();
 
     }
 
@@ -149,6 +156,8 @@ public class PlaceFragment extends Fragment {
                     place.setAddress(child.child("address").getValue(String.class));
                     place.setUrlPhoto(child.child("urlPhoto").getValue(String.class));
                     place.setReview(child.child("review").getValue(String.class));
+                    int playersAdscribed = (int) child.child("players").getChildrenCount();
+                    place.setPlayersAdscribed(playersAdscribed);
 
                     myPlaces.add(place);
                 }
@@ -175,7 +184,7 @@ public class PlaceFragment extends Fragment {
         if(rvPlaces!=null){
             rvPlaces.setAdapter(adapter);
             rvPlaces.setLayoutManager(new LinearLayoutManager(getActivity()));
-            adapter.setPlaces(myPlaces);
+            adapter.setPlaces(sortByProximity(myPlaces));
             rvPlaces.setAdapter(adapter);
         }
 
@@ -261,5 +270,58 @@ public class PlaceFragment extends Fragment {
             }
         });
 
+    }
+
+    public void setupSearch(){
+        searchInPlaces.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                processQuery(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                processQuery(query);
+                return false;
+            }
+        });
+    }
+
+    private void processQuery(String query){
+        List<Place> searchingGames = new ArrayList<Place>();
+
+        for(Place currentPlace : myPlaces){
+            if(currentPlace.getName().toLowerCase().contains(query.toLowerCase())){
+                searchingGames.add(currentPlace);
+            }
+        }
+
+        final PlaceAdapter adapter = new PlaceAdapter(getActivity());
+        filteredList = searchingGames;
+        adapter.setPlaces(sortByProximity(filteredList));
+        rvPlaces.setAdapter(adapter);
+        filtering = true;
+    }
+
+    public List<Place> sortByProximity(List<Place> places){
+        Collections.sort(places, new Comparator<Place>() {
+            @Override
+            public int compare(Place o1, Place o2) {
+                if (Double.parseDouble(o1.getCoordinates().substring(0, o1.getCoordinates().length()-3).replaceAll(",",".")) ==
+                        Double.parseDouble(o2.getCoordinates().substring(0, o1.getCoordinates().length()-3).replaceAll(",",".")))
+                {
+                    return 0;
+                }
+                else if (Double.parseDouble(o1.getCoordinates().substring(0, o1.getCoordinates().length()-3).replaceAll(",",".")) <
+                        Double.parseDouble(o2.getCoordinates().substring(0, o1.getCoordinates().length()-3).replaceAll(",",".")))
+                {
+                    return -1;
+                }
+                return 1;
+            }
+        });
+
+        return places;
     }
 }

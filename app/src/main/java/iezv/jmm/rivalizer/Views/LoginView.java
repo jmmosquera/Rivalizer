@@ -41,20 +41,17 @@ public class LoginView extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        if (mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(LoginView.this, MainActivity.class));
+            finish();
+        }
+
         emailLogin = findViewById(R.id.email_login);
         passwordLogin = findViewById(R.id.password_login);
         buttonLogin = findViewById(R.id.button_login);
         buttonGoRegister = findViewById(R.id.button_go_register);
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         eventListener();
     }

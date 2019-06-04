@@ -38,11 +38,16 @@ import java.util.Locale;
 
 import iezv.jmm.rivalizer.R;
 
+import static java.lang.Double.parseDouble;
+
 public class PlayerLocation extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private final Context mContext = new Context();
     private GoogleMap mMap;
     private Location location;
+    private String name = "";
+    private String coordinate = "";
+    private String[] coordinates;
     double latitude;
     double longitude;
     protected LocationManager locationManager;
@@ -76,26 +81,27 @@ public class PlayerLocation extends FragmentActivity implements OnMapReadyCallba
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
+        Bundle data = getIntent().getExtras();
+        this.name = data.getString("name");
+        this.coordinate = data.getString("coordinate");
+        this.coordinates = this.coordinate.split(",");
+        this.latitude = parseDouble(coordinates[0]);
+        this.longitude = parseDouble(coordinates[1]);
 
         mMap = googleMap;
 
         Geocoder geocoder = new Geocoder(this);
-        List<Address> addresses;
+
         try {
-            addresses = geocoder.getFromLocationName("Spain 18005", 1);
-            if(addresses.size() > 0) {
-                double latitude= addresses.get(0).getLatitude();
-                double longitude= addresses.get(0).getLongitude();
-                LatLng localAdress = new LatLng(latitude, longitude);
+
+                LatLng localAdress = new LatLng(this.latitude, this.longitude);
                 Log.v("ZZT", "Obtenidas coordenadas:" + latitude + ", "+longitude);
-                mMap.addMarker(new MarkerOptions().position(localAdress).title("Marker in Sydney"));
+                mMap.addMarker(new MarkerOptions().position(localAdress).title(this.name));
                 float zoomLevel = 16.0f;
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localAdress, zoomLevel));
 
-            }else{
-                Log.v("ZZT", "No había direcciones.");
-            }
-        } catch (IOException e) {
+
+        } catch (Error e) {
             Log.v("ZZT", "Error obteniendo coordenadas.");
             e.printStackTrace();
         }

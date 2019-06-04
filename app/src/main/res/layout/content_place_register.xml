@@ -49,7 +49,7 @@
             android:id="@+id/place_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/placeholder_short" />
+            android:hint="@string/location_details" />
 
         <TextView
             android:id="@+id/textView5"
@@ -93,12 +93,10 @@
             <ImageView
                 android:id="@+id/place_prev"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
+                android:scaleType="centerInside"
                 app:srcCompat="@drawable/ic_launcher_background" />
         </LinearLayout>
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
 
         <Button

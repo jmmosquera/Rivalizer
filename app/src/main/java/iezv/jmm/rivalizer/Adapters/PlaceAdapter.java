@@ -57,7 +57,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
             Place current = mPlaces.get(position);
             holder.placeName.setText(current.getName());
             holder.placeDistance.setText(current.getCoordinates());
-            holder.placeAdscribed.setText("5");
+            holder.placeAdscribed.setText(current.getPlayersAdscribed()+"");
             String photoLink = current.getUrlPhoto();
             Picasso.with(context).load(Uri.parse(photoLink)).into(holder.photoPlace);
         }

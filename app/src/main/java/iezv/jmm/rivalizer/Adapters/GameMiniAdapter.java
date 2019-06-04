@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.util.Collections;
 import java.util.List;
 
+import iezv.jmm.rivalizer.POJO.Game;
 import iezv.jmm.rivalizer.R;
 
 public class GameMiniAdapter extends RecyclerView.Adapter<GameMiniAdapter.GameMiniViewHolder> {
@@ -31,7 +32,7 @@ public class GameMiniAdapter extends RecyclerView.Adapter<GameMiniAdapter.GameMi
 
     private final LayoutInflater mInflater;
 
-    private List<String> mMiniGames = Collections.emptyList();
+    private List<Game> mMiniGames = Collections.emptyList();
 
     public GameMiniAdapter(Context context){
         this.context = context;
@@ -47,12 +48,12 @@ public class GameMiniAdapter extends RecyclerView.Adapter<GameMiniAdapter.GameMi
     @Override
     public void onBindViewHolder(GameMiniViewHolder holder, int position){
         if(mMiniGames != null){
-            String current = mMiniGames.get(position);
+            String current = mMiniGames.get(position).getUrlPhoto();
             Picasso.with(context).load(Uri.parse(current)).into(holder.gameMiniPhoto);
         }
     }
 
-    public void setGamesMini(List<String> gamesMini){
+    public void setGamesMini(List<Game> gamesMini){
         mMiniGames = gamesMini;
         notifyDataSetChanged();
     }

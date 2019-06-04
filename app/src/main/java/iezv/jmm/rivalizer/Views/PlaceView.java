@@ -72,9 +72,10 @@ public class PlaceView extends AppCompatActivity {
         placeAdscribed = findViewById(R.id.placeAdscribedView);
         placeDistance = findViewById(R.id.placeDistanceView);
         placeName = findViewById(R.id.placeNameView);
-        placeReview = findViewById(R.id.place_review);
+        placeReview = findViewById(R.id.reviewPlaceView);
         adscribeUnadscribe = findViewById(R.id.adscribeUnadscribe);
         goMap = findViewById(R.id.viewPlaceMap);
+        rvAvGames = findViewById(R.id.rvAvGames);
 
         Bundle data = getIntent().getExtras();
         currentPlace = data.getParcelable("place");
@@ -88,7 +89,7 @@ public class PlaceView extends AppCompatActivity {
         Picasso.with(PlaceView.this).load(Uri.parse(photoLink)).into(photoPlace);
         placeDistance.setText(currentPlace.getCoordinates());
         placeName.setText(currentPlace.getName());
-        //placeReview.setText(currentPlace.getReview());
+        placeReview.setText(currentPlace.getReview());
 
         setNumAdscribed();
 
@@ -104,17 +105,27 @@ public class PlaceView extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot parent) {
                         for(DataSnapshot child : parent.getChildren() ){
+                            Log.v("ZTV", "Bucle de juegos: "+child.child("idGame").getValue(String.class));
                             Generic game = new Generic();
                             game.setIdGeneric(child.child("idGame").getValue(String.class));
                             game.setNameGeneric(child.child("name").getValue(String.class));
                             game.setPhotoGeneric(child.child("urlPhoto").getValue(String.class));
                             mGames.add(game);
+
+
                             for(Game trGame : availableGames){
                                 if(trGame.getIdGame().equals(game.getIdGeneric())){
+                                    Log.v("ZTV", "CONTIENE: " + game.getIdGeneric());
                                     mGames.remove(game);
                                 }
                             }
                         }
+
+                        Intent intent = new Intent(PlaceView.this, GenericView.class);
+                        intent.putExtra("genCode", 2);
+                        intent.putExtra("games", mGames);
+                        Log.v("ZZT", mGames+"");
+                        startActivityForResult(intent, GET_GAMES_REQUEST);
                     }
 
                     @Override
@@ -123,10 +134,7 @@ public class PlaceView extends AppCompatActivity {
                     }
                 });
 
-                Intent intent = new Intent(PlaceView.this, GenericView.class);
-                intent.putExtra("genCode", 2);
-                intent.putExtra("games", mGames);
-                startActivityForResult(intent, GET_GAMES_REQUEST);
+
             }
         });
 
@@ -170,6 +178,16 @@ public class PlaceView extends AppCompatActivity {
 
             }
         });
+
+        goMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PlaceView.this, PlayerLocation.class);
+                intent.putExtra("name", currentPlace.getName());
+                intent.putExtra("coordinate", currentPlace.getAddress());
+                startActivity(intent);
+            }
+        });
     }
 
     public void existe() {
@@ -203,10 +221,13 @@ public class PlaceView extends AppCompatActivity {
     public void getAvailableGames(){
         final ArrayList<String> authGames = new ArrayList<String>();
 
+
+
         placeRef.child("games").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot parent) {
                 for(DataSnapshot child : parent.getChildren()){
+                    Log.v("ZBT", "Obtaining key: "+child.getKey());
                     authGames.add(child.getKey());
                 }
             }
@@ -221,17 +242,16 @@ public class PlaceView extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot parent) {
                 for(DataSnapshot child : parent.getChildren()){
-                    for(String authGame : authGames){
-                        if(child.child("idGame").getValue().equals(authGame)){
-                            Game game = new Game();
-                            game.setIdGame(child.child("game").getValue(String.class));
-                            game.setName(child.child("name").getValue(String.class));
-                            game.setDescription(child.child("description").getValue(String.class));
-                            game.setRules(child.child("rules").getValue(String.class));
-                            game.setValidated(child.child("validated").getValue(Integer.class));
-                            game.setUrlPhoto(child.child("urlPhoto").getValue(String.class));
-                            availableGames.add(game);
-                        }
+                    if(authGames.contains(child.child("idGame").getValue(String.class))){
+                        Game game = new Game();
+                        game.setIdGame(child.child("idGame").getValue(String.class));
+                        game.setName(child.child("name").getValue(String.class));
+                        game.setDescription(child.child("description").getValue(String.class));
+                        game.setRules(child.child("rules").getValue(String.class));
+                        game.setValidated(child.child("validated").getValue(Integer.class));
+                        game.setUrlPhoto(child.child("urlPhoto").getValue(String.class));
+                        Log.v("ZBT", "Adding game: "+game.getName());
+                        availableGames.add(game);
                     }
 
                 }
@@ -316,7 +336,7 @@ public class PlaceView extends AppCompatActivity {
                 ArrayList<String> checkeds = data.getStringArrayListExtra("checkeds");
                 for(String check : checkeds){
                     DatabaseReference gameRef = placesDB.child(check);
-                    placeRef.child("games").child(currentPlace.getIdPlace()).setValue(1);
+                    placeRef.child("games").child(check).setValue(1);
                 }
                 noExiste();
             }

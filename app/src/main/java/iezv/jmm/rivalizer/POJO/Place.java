@@ -11,6 +11,7 @@ public class Place implements Parcelable {
     private String urlPhoto;
     private String review;
     private int validated;
+    private int playersAdscribed;
 
     public Place () {}
 
@@ -31,6 +32,7 @@ public class Place implements Parcelable {
         urlPhoto = in.readString();
         review = in.readString();
         validated = in.readInt();
+        playersAdscribed = in.readInt();
     }
 
     public static final Creator<Place> CREATOR = new Creator<Place>() {
@@ -93,6 +95,14 @@ public class Place implements Parcelable {
         this.review = review;
     }
 
+    public int getPlayersAdscribed() {
+        return playersAdscribed;
+    }
+
+    public void setPlayersAdscribed(int playersAdscribed) {
+        this.playersAdscribed = playersAdscribed;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -107,5 +117,6 @@ public class Place implements Parcelable {
         dest.writeString(urlPhoto);
         dest.writeString(review);
         dest.writeInt(validated);
+        dest.writeInt(playersAdscribed);
     }
 }

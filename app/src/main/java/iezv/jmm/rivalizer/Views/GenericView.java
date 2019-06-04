@@ -50,6 +50,8 @@ public class GenericView extends AppCompatActivity {
         Bundle data = getIntent().getExtras();
         int genericCode = data.getInt("genCode");
 
+        Log.v("ZZT", "gencode:"+ genericCode);
+
         switch (genericCode){
             case 1:
                 Log.v("ZZT", "Caso 1");
@@ -57,19 +59,12 @@ public class GenericView extends AppCompatActivity {
                 checkPlaces();
                 break;
             case 2:
-                myGames = data.getParcelableArrayList("games");
+                myGenerics = data.getParcelableArrayList("games");
+
                 checkGames();
                 break;
         }
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         touchHandler();
     }
@@ -112,6 +107,7 @@ public class GenericView extends AppCompatActivity {
                 ArrayList<String> checkeds = new ArrayList<String>(checkedIds);
                 checkIntent.putStringArrayListExtra("checkeds", checkeds);
                 setResult(Activity.RESULT_OK, checkIntent);
+                Log.v("ZZT","CHECKEDS: "+checkeds);
                 finish();
             }
         });
@@ -133,6 +129,16 @@ public class GenericView extends AppCompatActivity {
     }
 
     private void checkGames() {
+        final GenericAdapter adapter = new GenericAdapter(this);
+        this.checkedIds = adapter.getCheckedIds();
+        if(myGenerics!=null&&myGenerics.size()!=0){
+            rvGeneric.setAdapter(adapter);
+            rvGeneric.setLayoutManager(new LinearLayoutManager(this));
+            adapter.setGenerics(myGenerics);
+            rvGeneric.setAdapter(adapter);
+        }else{
+            Log.v("ZZT", "Vacio");
+        }
     }
 
 }

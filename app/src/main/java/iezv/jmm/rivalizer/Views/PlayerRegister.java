@@ -41,7 +41,6 @@ public class PlayerRegister extends AppCompatActivity {
 
     EditText emailRegister;
     EditText nameRegister;
-    EditText zipRegister;
     EditText passwordRegister;
     EditText getPasswordRegisterRepeat;
     Button uploadPhoto;
@@ -68,23 +67,12 @@ public class PlayerRegister extends AppCompatActivity {
 
         emailRegister = findViewById(R.id.email_register);
         nameRegister = findViewById(R.id.name_register);
-        zipRegister = findViewById(R.id.zip_code);
         passwordRegister = findViewById(R.id.password_register);
         getPasswordRegisterRepeat = findViewById(R.id.password_register_repeat);
         fulfillRegister = findViewById(R.id.fulfill_register);
         uploadPhoto = findViewById((R.id.upload_photo_place));
         avatarPrev = findViewById(R.id.place_prev);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        eventListener();
     }
 
     public void eventListener(){
@@ -136,7 +124,7 @@ public class PlayerRegister extends AppCompatActivity {
             Toast.makeText(PlayerRegister.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
         }else{
             DatabaseReference userRef = usersDB.child(user.getUid());
-            Player newPlayer = new Player(user.getUid(), nameRegister.getText().toString(), "FOTO", zipRegister.getText().toString());
+            Player newPlayer = new Player(user.getUid(), nameRegister.getText().toString(), avatarUri.toString(), "0");
             userRef.setValue(newPlayer);
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
@@ -146,28 +134,6 @@ public class PlayerRegister extends AppCompatActivity {
     //Recibe los datos del método anterior. En caso de que la imagen que queremos guardar exceda cierto tamaño, la redimensiona hasta que esté por debajo de dichas dimensiones.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-
-
-
-        /*Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
-        StorageReference riversRef = mStorageRef.child("images/rivers.jpg");
-
-        riversRef.putFile(file)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // Get a URL to the uploaded content
-                        Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                        // ...
-                    }
-                });*/
-
 
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == this.RESULT_CANCELED) {
@@ -189,9 +155,8 @@ public class PlayerRegister extends AppCompatActivity {
                                 avatarRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        Uri downloadUrl = uri;
-                                        Log.v("Download URL ", downloadUrl+"");
-                                        Picasso.with(PlayerRegister.this).load(downloadUrl).into(avatarPrev);
+                                        avatarUri = uri;
+                                        Picasso.with(PlayerRegister.this).load(avatarUri).into(avatarPrev);
                                     }
                                 });
 
@@ -205,30 +170,6 @@ public class PlayerRegister extends AppCompatActivity {
                                 // ...
                             }
                         });
-
-                /*Picasso.with(PlayerRegister.this).load(avatarUri).into(avatarPrev);
-                try {
-                    avatar = MediaStore.Images.Media.getBitmap(this.getContentResolver(), avatarUri);
-                    int halfHeight;
-                    int halfWidth;
-                    if(avatar.getWidth() > 500 || avatar.getHeight() > 500){
-                        halfHeight = avatar.getWidth() / 2;
-                        halfWidth = avatar.getHeight() / 2;
-                        while (halfWidth > 500 || halfHeight > 500) {
-                            halfHeight = halfHeight / 2;
-                            halfWidth = halfWidth / 2;
-                        }
-                        avatar = Bitmap.createScaledBitmap(avatar, halfHeight, halfWidth, true);
-
-                    }
-                    //coverPath = saveToInternalStorage(cover);
-
-                    //imageview.setImageBitmap(bitmap);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(PlayerRegister.this, "Failed!", Toast.LENGTH_SHORT).show();
-                }*/
             }
 
         }
