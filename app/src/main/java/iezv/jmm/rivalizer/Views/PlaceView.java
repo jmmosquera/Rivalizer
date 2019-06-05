@@ -105,7 +105,6 @@ public class PlaceView extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot parent) {
                         for(DataSnapshot child : parent.getChildren() ){
-                            Log.v("ZTV", "Bucle de juegos: "+child.child("idGame").getValue(String.class));
                             Generic game = new Generic();
                             game.setIdGeneric(child.child("idGame").getValue(String.class));
                             game.setNameGeneric(child.child("name").getValue(String.class));
@@ -115,7 +114,6 @@ public class PlaceView extends AppCompatActivity {
 
                             for(Game trGame : availableGames){
                                 if(trGame.getIdGame().equals(game.getIdGeneric())){
-                                    Log.v("ZTV", "CONTIENE: " + game.getIdGeneric());
                                     mGames.remove(game);
                                 }
                             }
@@ -124,7 +122,6 @@ public class PlaceView extends AppCompatActivity {
                         Intent intent = new Intent(PlaceView.this, GenericView.class);
                         intent.putExtra("genCode", 2);
                         intent.putExtra("games", mGames);
-                        Log.v("ZZT", mGames+"");
                         startActivityForResult(intent, GET_GAMES_REQUEST);
                     }
 
@@ -227,7 +224,6 @@ public class PlaceView extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot parent) {
                 for(DataSnapshot child : parent.getChildren()){
-                    Log.v("ZBT", "Obtaining key: "+child.getKey());
                     authGames.add(child.getKey());
                 }
             }
@@ -250,7 +246,6 @@ public class PlaceView extends AppCompatActivity {
                         game.setRules(child.child("rules").getValue(String.class));
                         game.setValidated(child.child("validated").getValue(Integer.class));
                         game.setUrlPhoto(child.child("urlPhoto").getValue(String.class));
-                        Log.v("ZBT", "Adding game: "+game.getName());
                         availableGames.add(game);
                     }
 
@@ -299,11 +294,6 @@ public class PlaceView extends AppCompatActivity {
 
                     int position = recyclerView.getChildAdapterPosition(child);
                     Game item = availableGames.get(position);
-                    /*if(filtering){
-                        item = filteredBooks.get(position);
-                    }else {
-                        item = myBooks.get(position);
-                    }*/
                     Intent intent = new Intent(PlaceView.this, GameView.class);
                     intent.putExtra("game", item);
                     startActivity(intent);
@@ -329,7 +319,6 @@ public class PlaceView extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
-        Log.v("ZZT", "Retornando... "+resultCode);
         if (requestCode == GET_GAMES_REQUEST) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {

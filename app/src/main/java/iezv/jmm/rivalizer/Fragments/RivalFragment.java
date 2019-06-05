@@ -79,7 +79,6 @@ public class RivalFragment extends Fragment {
 
         final FirebaseUser user = mAuth.getCurrentUser();
         final List<Rival> allRivals = new ArrayList<Rival>();
-        Log.v("ZTE", "Cargando rivales");
         refPlayers.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot parent) {
@@ -90,7 +89,6 @@ public class RivalFragment extends Fragment {
                     rival.setName(child.child("name").getValue(String.class));
                     rival.setUrlPhoto(child.child("urlPhoto").getValue(String.class));
                     allRivals.add(rival);
-                    Log.v("ZTE", "Añadiendo rival todos: "+ rival);
                 }
                 getGamesForRivals(allRivals, user);
             }
@@ -122,13 +120,11 @@ public class RivalFragment extends Fragment {
                             game.setValidated(child.child("validated").getValue(Integer.class));
                             game.setUrlPhoto(child.child("urlPhoto").getValue(String.class));
                             ownGames.add(game);
-                            Log.v("ZTE", "Añadiendo juego: "+ game+" a rival: "+thisRival);
                         }
                     }
                     thisRival.setGames(ownGames);
                     if(playable){
                         playableRivals.add(thisRival.getCloud_id());
-                        Log.v("ZTE", "Rival es jugable");
                     }
                 }
                 setMyRivals(allRivals, user);
@@ -151,11 +147,9 @@ public class RivalFragment extends Fragment {
                             if(!myRivals.contains(thisRival)){
                                 myRivals.add(0, thisRival);
                             }
-                            Log.v("ZTE", "Rival comparte locales");
                         }else{
                             for(String idRiv : playableRivals){
                                 if(thisRival.getCloud_id().equals(idRiv)){
-                                    Log.v("ZTE", "Rival jugable no comparte locales");
                                     playableRivals.remove(thisRival.getCloud_id());
                                     myRivals.add(thisRival);
                                 }
@@ -175,7 +169,6 @@ public class RivalFragment extends Fragment {
     }
 
     private void initRecycler(){
-        Log.v("ZTE", "Recycler llamado: "+myRivals+"");
         final RivalAdapter adapter = new RivalAdapter(getActivity());
         if(rvRivals!=null){
             rvRivals.setAdapter(adapter);
@@ -201,11 +194,11 @@ public class RivalFragment extends Fragment {
 
                     int position = recyclerView.getChildAdapterPosition(child);
                     Rival item = myRivals.get(position);
-                    /*if(filtering){
-                        item = filteredBooks.get(position);
+                    if(filtering){
+                        item = filteredList.get(position);
                     }else {
-                        item = myBooks.get(position);
-                    }*/
+                        item = myRivals.get(position);
+                    }
                     Intent intent = new Intent(getActivity(), RivalView.class);
                     intent.putExtra("rival", item);
                     startActivity(intent);

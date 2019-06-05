@@ -18,9 +18,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Views.ProfileView"
+            android:label="@string/title_activity_profile_view"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Views.ChatView"
+            android:label="@string/title_activity_chat_view"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Views.RivalView"
             android:label="@string/title_activity_rival_view"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Views.GenericView"
             android:label="@string/title_activity_generic_view"

@@ -67,4 +67,8 @@
     <string name="common_places">Lugares del rival:</string>
     <string name="view_my_profile">Ver mi perfil</string>
     <string name="location_details">Calle, Número, Código Postal, Ciudad</string>
+    <string name="title_activity_chat_view">ChatView</string>
+    <string name="write_a_message">Escribe un mensaje</string>
+    <string name="chat_send_button">ENVIAR</string>
+    <string name="title_activity_profile_view">ProfileView</string>
 </resources>

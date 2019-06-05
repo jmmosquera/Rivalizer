@@ -107,14 +107,12 @@ public class GenericView extends AppCompatActivity {
                 ArrayList<String> checkeds = new ArrayList<String>(checkedIds);
                 checkIntent.putStringArrayListExtra("checkeds", checkeds);
                 setResult(Activity.RESULT_OK, checkIntent);
-                Log.v("ZZT","CHECKEDS: "+checkeds);
                 finish();
             }
         });
     }
 
     private void checkPlaces() {
-        Log.v("ZZT", "Check it out");
         final GenericAdapter adapter = new GenericAdapter(this);
         this.checkedIds = adapter.getCheckedIds();
         if(myGenerics!=null&&myGenerics.size()!=0){
@@ -122,10 +120,7 @@ public class GenericView extends AppCompatActivity {
             rvGeneric.setLayoutManager(new LinearLayoutManager(this));
             adapter.setGenerics(myGenerics);
             rvGeneric.setAdapter(adapter);
-        }else{
-            Log.v("ZZT", "Vacio");
         }
-
     }
 
     private void checkGames() {
@@ -136,8 +131,6 @@ public class GenericView extends AppCompatActivity {
             rvGeneric.setLayoutManager(new LinearLayoutManager(this));
             adapter.setGenerics(myGenerics);
             rvGeneric.setAdapter(adapter);
-        }else{
-            Log.v("ZZT", "Vacio");
         }
     }
 

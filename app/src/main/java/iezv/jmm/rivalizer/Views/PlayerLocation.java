@@ -95,58 +95,30 @@ public class PlayerLocation extends FragmentActivity implements OnMapReadyCallba
         try {
 
                 LatLng localAdress = new LatLng(this.latitude, this.longitude);
-                Log.v("ZZT", "Obtenidas coordenadas:" + latitude + ", "+longitude);
                 mMap.addMarker(new MarkerOptions().position(localAdress).title(this.name));
                 float zoomLevel = 16.0f;
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localAdress, zoomLevel));
 
 
         } catch (Error e) {
-            Log.v("ZZT", "Error obteniendo coordenadas.");
             e.printStackTrace();
-        }
-        ;
+        };
 
-
-        // if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Log.v("ZZT", "Autopermisos comprobados");
             if(checkLocationPermission()/*&&checkLocationPermissionCoarse()*/){
-                Log.v("ZZT", "Permisos comprobados");
                 if(checkPlayServices()){
-                    Log.v("ZZT", "Servicios comprobados");
                     if(location!=null){
                         location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
-                        Log.v("ZZT", "Localización obtenida: "+location);
                         LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
                         mMap.addMarker(new MarkerOptions().position(position).title("This place"));
                         // location = LocationServices.getFusedLocationProviderClient(this);
                     }
 
                 }
-                else{
-                    Log.v("ZZT", "No tienes checkPlayServices");
-                }
                 googleMap.setMyLocationEnabled(true);
                 
 
-            }else{
-                Log.v("ZZT", "No tienes checkLocationPermision");
             }
 
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            // return;
-
-
-        // Add a marker in Sydney and move the camera
-        //LatLng sydney = new LatLng(-34, 151);
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
     private boolean checkPlayServices() {
@@ -170,18 +142,16 @@ public class PlayerLocation extends FragmentActivity implements OnMapReadyCallba
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-            Log.v("ZZT", "T1");
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
-                Log.v("ZZT", "T2");
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
                 new AlertDialog.Builder(this)
-                        .setTitle("OIGA QUE QUIERO CONECTARME")
-                        .setMessage("¿ME DA PERMISO PA QUE VEA DONDE VIVE?")
-                        .setPositiveButton("VEEENGA", new DialogInterface.OnClickListener() {
+                        .setTitle("Se requiere permiso para chequear su localización.")
+                        .setMessage("Activar esta funcionalidad nos permitirá presentarle información de forma más adecuada a sus intereses.")
+                        .setPositiveButton("CONTINUAR", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //Prompt the user once explanation has been shown
@@ -195,16 +165,12 @@ public class PlayerLocation extends FragmentActivity implements OnMapReadyCallba
 
 
             } else {
-                // No explanation needed, we can request the permission.
-                Log.v("ZZT", "T3");
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_LOCATION);
             }
-            Log.v("ZZT", "T4");
             return false;
         } else {
-            Log.v("ZZT", "T5");
             return true;
         }
     }

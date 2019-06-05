@@ -126,9 +126,7 @@ public class PlaceRegister extends AppCompatActivity {
             return;
         }
         if (requestCode == LOAD_IMAGE_CODE) {
-            Log.v("DATA: ", data+"");
             if (data != null) {
-                Log.v("IF DATA", "ENTRA");
                 coverUri = data.getData();
 
                 final StorageReference avatarRef = mStorageRef.child("images/"+coverUri.getLastPathSegment());
@@ -143,7 +141,6 @@ public class PlaceRegister extends AppCompatActivity {
                                     public void onSuccess(Uri uri) {
                                         coverUri = uri;
 
-                                        Log.v("Download URL ", coverUri+"");
                                         Picasso.with(PlaceRegister.this).load(coverUri).into(placePrev);
                                     }
                                 });
@@ -153,9 +150,7 @@ public class PlaceRegister extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception exception) {
-                                Log.v("Download URL ", "EMOSIDO FALLADO");
-                                // Handle unsuccessful uploads
-                                // ...
+
                             }
                         });
 

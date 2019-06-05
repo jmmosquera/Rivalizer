@@ -92,7 +92,6 @@ public class GameView extends AppCompatActivity {
         gameName.setText(currentGame.getName());
         gameDesc.setText(currentGame.getDescription());
         gameRules.setText(currentGame.getRules());
-        Log.v("ZZV", "Obteniendo localizaciones");
         location();
         getPlayablePlaces();
 
@@ -124,7 +123,6 @@ public class GameView extends AppCompatActivity {
                         Intent intent = new Intent(GameView.this, GenericView.class);
                         intent.putExtra("genCode", 1);
                         intent.putExtra("places", mPlaces);
-                        Log.v("ZZT", mPlaces+"");
                         startActivityForResult(intent, GET_PLACES_REQUEST);
 
 
@@ -146,7 +144,6 @@ public class GameView extends AppCompatActivity {
     public void buttonHandler(){
 
         FirebaseUser user = mAuth.getCurrentUser();
-        Log.v("GAMEID", currentGame.getIdGame());
         DatabaseReference gameRef = gamesDB.child(currentGame.getIdGame());
         gameRef.child("players").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -179,7 +176,6 @@ public class GameView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseUser user = mAuth.getCurrentUser();
-                Log.v("GAMEID", currentGame.getIdGame());
                 DatabaseReference gameRef = gamesDB.child(currentGame.getIdGame());
                 gameRef.child("players").child(user.getUid()).removeValue();
                 noExiste();
@@ -195,7 +191,6 @@ public class GameView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseUser user = mAuth.getCurrentUser();
-                Log.v("GAMEID", currentGame.getIdGame());
                 DatabaseReference gameRef = gamesDB.child(currentGame.getIdGame());
                 gameRef.child("players").child(user.getUid()).setValue(1);
                 existe();
@@ -207,7 +202,6 @@ public class GameView extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
-        Log.v("ZZT", "Retornando... "+resultCode);
         if (requestCode == GET_PLACES_REQUEST) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
@@ -222,7 +216,6 @@ public class GameView extends AppCompatActivity {
     }
 
     public void getPlayablePlaces(){
-        Log.v("ZZV", "Obteniendo lugares");
         placesDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot parent) {
@@ -252,19 +245,14 @@ public class GameView extends AppCompatActivity {
     }
 
     public void setDistances(){
-        Log.v("ZZV", "Obteniendo distancias");
         if(myLocation!=null){
-            Log.v("DISTANCE", playablePlaces.size()+" lugares");
             for(Place place : playablePlaces){
 
                 String[] coordinates = place.getAddress().split(",");
                 Double distance = distance(parseDouble(coordinates[0]), parseDouble(coordinates[1]), myLocation.getLatitude(), myLocation.getLongitude());
 
                 place.setCoordinates(df2.format(distance)+" km");
-                Log.v("DISTANCE", distance+ "Km.");
             }
-        }else{
-            Log.v("DISTANCE", "NO hay location");
         }
         initRecycler();
 
@@ -307,12 +295,7 @@ public class GameView extends AppCompatActivity {
         }
 
         // Return best reading or null
-        /*if (bestAccuracy > minAccuracy || (System.currentTimeMillis() - bestAge) > maxAge) {
-            //return null;
-        } else {
 
-        }*/
-        Log.v("BESTLOCATION", bestResult+"");
         myLocation = bestResult;
 
     }
@@ -333,7 +316,6 @@ public class GameView extends AppCompatActivity {
         }
     }
     private void initRecycler() {
-        Log.v("ZZV", "Obteniendo recycler");
         final PlaceAdapter adapter = new PlaceAdapter(this);
         if(rvAvPlaces!=null){
             rvAvPlaces.setAdapter(adapter);

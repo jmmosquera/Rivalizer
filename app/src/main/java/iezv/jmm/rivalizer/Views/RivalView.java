@@ -88,8 +88,11 @@ public class RivalView extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent i = new Intent(RivalView.this, ChatView.class);
+                i.putExtra("nameRival", currentRival.getName());
+                i.putExtra("avatarRival", currentRival.getUrlPhoto());
+                i.putExtra("idChatRival", currentRival.getCloud_id());
+                startActivity(i);
             }
         });
 
@@ -168,19 +171,14 @@ public class RivalView extends AppCompatActivity {
     }
 
     public void setDistances(){
-        Log.v("ZZV", "Obteniendo distancias");
         if(myLocation!=null){
-            Log.v("DISTANCE", rivalPlaces.size()+" lugares");
             for(Place place : rivalPlaces){
 
                 String[] coordinates = place.getAddress().split(",");
                 Double distance = distance(parseDouble(coordinates[0]), parseDouble(coordinates[1]), myLocation.getLatitude(), myLocation.getLongitude());
 
                 place.setCoordinates(df2.format(distance)+" km");
-                Log.v("DISTANCE", distance+ "Km.");
             }
-        }else{
-            Log.v("DISTANCE", "NO hay location");
         }
         setRecyclerPlaces();
 
@@ -233,14 +231,6 @@ public class RivalView extends AppCompatActivity {
                 }
             }
         }
-
-        // Return best reading or null
-        /*if (bestAccuracy > minAccuracy || (System.currentTimeMillis() - bestAge) > maxAge) {
-            //return null;
-        } else {
-
-        }*/
-        Log.v("BESTLOCATION", bestResult+"");
         myLocation = bestResult;
 
     }
@@ -278,11 +268,6 @@ public class RivalView extends AppCompatActivity {
 
                     int position = recyclerView.getChildAdapterPosition(child);
                     Place item = rivalPlaces.get(position);
-                    /*if(filtering){
-                        item = filteredBooks.get(position);
-                    }else {
-                        item = myBooks.get(position);
-                    }*/
                     Intent intent = new Intent(RivalView.this, PlaceView.class);
                     intent.putExtra("place", item);
                     startActivity(intent);
@@ -321,11 +306,6 @@ public class RivalView extends AppCompatActivity {
 
                     int position = recyclerView.getChildAdapterPosition(child);
                     Game item = rivalGames.get(position);
-                    /*if(filtering){
-                        item = filteredBooks.get(position);
-                    }else {
-                        item = myBooks.get(position);
-                    }*/
                     Intent intent = new Intent(RivalView.this, GameView.class);
                     intent.putExtra("game", item);
                     startActivity(intent);

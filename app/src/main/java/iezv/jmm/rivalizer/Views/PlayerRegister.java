@@ -90,26 +90,21 @@ public class PlayerRegister extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Log.v("BOTON", "BOTON PULSADO");
                 String email = emailRegister.getText().toString();
                 String password = passwordRegister.getText().toString();
-                Log.v("BOTON", "EMAIL: "+email+" PASSWORD: "+password);
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(PlayerRegister.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.v("ZZT", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.v("ZZT", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(PlayerRegister.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
 
-                        // ...
                     }
                 });
 
@@ -119,7 +114,6 @@ public class PlayerRegister extends AppCompatActivity {
     }
 
     public void updateUI(FirebaseUser user){
-        Log.v("BOTON", user.toString());
         if(user == null){
             Toast.makeText(PlayerRegister.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
         }else{
@@ -140,9 +134,7 @@ public class PlayerRegister extends AppCompatActivity {
             return;
         }
         if (requestCode == LOAD_IMAGE_CODE) {
-            Log.v("DATA: ", data+"");
             if (data != null) {
-                Log.v("IF DATA", "ENTRA");
                 avatarUri = data.getData();
 
                 final StorageReference avatarRef = mStorageRef.child("images/"+avatarUri.getLastPathSegment());
@@ -165,7 +157,6 @@ public class PlayerRegister extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception exception) {
-                                Log.v("Download URL ", "EMOSIDO FALLADO");
                                 // Handle unsuccessful uploads
                                 // ...
                             }

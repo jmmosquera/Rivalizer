@@ -85,7 +85,6 @@ public class GameRegister extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Log.v("BOTON", "BOTON PULSADO");
                 String gameName = nameGame.getText().toString();
                 String descrGame = gameDescr.getText().toString();
                 String rulesGame = gameRules.getText().toString();
@@ -117,9 +116,7 @@ public class GameRegister extends AppCompatActivity {
             return;
         }
         if (requestCode == LOAD_IMAGE_CODE) {
-            Log.v("DATA: ", data+"");
             if (data != null) {
-                Log.v("IF DATA", "ENTRA");
                 coverUri = data.getData();
 
                 final StorageReference avatarRef = mStorageRef.child("images/"+coverUri.getLastPathSegment());
@@ -134,7 +131,6 @@ public class GameRegister extends AppCompatActivity {
                                     public void onSuccess(Uri uri) {
                                         coverUri = uri;
 
-                                        Log.v("Download URL ", coverUri+"");
                                         Picasso.with(GameRegister.this).load(coverUri).into(gamePrev);
                                     }
                                 });
@@ -144,7 +140,6 @@ public class GameRegister extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception exception) {
-                                Log.v("Download URL ", "EMOSIDO FALLADO");
                                 // Handle unsuccessful uploads
                                 // ...
                             }

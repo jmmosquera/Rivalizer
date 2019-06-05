@@ -67,6 +67,7 @@ public class GameFragment extends Fragment {
     }
 
 
+    // Configua el adaptador e inicia el RecyclerView.
     private void initRecycler() {
         final GameAdapter adapter = new GameAdapter(getActivity());
         if(rvGames!=null) {
@@ -108,7 +109,6 @@ public class GameFragment extends Fragment {
                     game.setValidated(child.child("validated").getValue(Integer.class));
                     game.setUrlPhoto(child.child("urlPhoto").getValue(String.class));
                     myGames.add(game);
-                    Log.v("ValDataSnap: ", game.toString());
                 }
 
                 initRecycler();

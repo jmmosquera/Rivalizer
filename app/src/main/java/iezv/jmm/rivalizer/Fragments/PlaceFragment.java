@@ -120,13 +120,7 @@ public class PlaceFragment extends Fragment {
             }
         }
 
-        // Return best reading or null
-        /*if (bestAccuracy > minAccuracy || (System.currentTimeMillis() - bestAge) > maxAge) {
-            //return null;
-        } else {
 
-        }*/
-        Log.v("BESTLOCATION", bestResult+"");
         myLocation = bestResult;
 
     }
@@ -173,10 +167,6 @@ public class PlaceFragment extends Fragment {
         });
 
 
-        /*myPlaces.add(new Place(1, "WarLotus", "13", "1,9 km", "http://warlotus.com/sites/default/files/wl_campeonato_0.jpg", ""));
-        myPlaces.add(new Place(2, "Comic Stores", "7", "1,1 km", "https://www.geomediaconsultores.net/wp-content/uploads/2016/12/IMG-20161210-WA0004-1000x750.jpg", ""));
-        myPlaces.add(new Place(3, "Dracomic", "15", "94 m", "https://4.bp.blogspot.com/-xsF_xi9Xx0Q/WTQ4_r-cCSI/AAAAAAAAGYk/d-hRGz9D4NU3lkP2hVUa4qBtVpHQ0OpRACLcB/s1600/DRACO.jpg", ""));*/
-
     }
 
     private void initRecycler() {
@@ -194,17 +184,13 @@ public class PlaceFragment extends Fragment {
     public void setDistances(){
 
         if(myLocation!=null){
-            Log.v("DISTANCE", myPlaces.size()+" lugares");
             for(Place place : myPlaces){
 
                 String[] coordinates = place.getAddress().split(",");
                 Double distance = distance(parseDouble(coordinates[0]), parseDouble(coordinates[1]), myLocation.getLatitude(), myLocation.getLongitude());
 
                 place.setCoordinates(df2.format(distance)+" km");
-                Log.v("DISTANCE", distance+ "Km.");
             }
-        }else{
-            Log.v("DISTANCE", "NO hay location");
         }
         initRecycler();
 
