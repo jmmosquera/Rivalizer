@@ -84,11 +84,14 @@ public class RivalFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot parent) {
 
                 for(DataSnapshot child : parent.getChildren() ){
-                    Rival rival = new Rival();
-                    rival.setCloud_id(child.child("idPlayer").getValue(String.class));
-                    rival.setName(child.child("name").getValue(String.class));
-                    rival.setUrlPhoto(child.child("urlPhoto").getValue(String.class));
-                    allRivals.add(rival);
+                    if(!child.child("idPlayer").getValue(String.class).equals(mAuth.getUid())){
+                        Rival rival = new Rival();
+                        rival.setCloud_id(child.child("idPlayer").getValue(String.class));
+                        rival.setName(child.child("name").getValue(String.class));
+                        rival.setUrlPhoto(child.child("urlPhoto").getValue(String.class));
+                        allRivals.add(rival);
+                    }
+
                 }
                 getGamesForRivals(allRivals, user);
             }

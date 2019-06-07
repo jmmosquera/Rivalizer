@@ -11,6 +11,18 @@ public class Message {
 
     public Message(){}
 
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id_msg='" + id_msg + '\'' +
+                ", id_sender='" + id_sender + '\'' +
+                ", date_msg='" + date_msg + '\'' +
+                ", text_msg='" + text_msg + '\'' +
+                ", sended=" + sended +
+                ", status=" + status +
+                '}';
+    }
+
     public Message(String id_msg, String id_sender, String date_msg, String text_msg, int sended, int status) {
         this.id_msg = id_msg;
         this.id_sender = id_sender;

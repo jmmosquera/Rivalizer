@@ -44,6 +44,19 @@ public class ChatAdapter extends RecyclerView.Adapter {
     }
 
     @Override
+    public int getItemViewType(int position) {
+        Message message = (Message) messages.get(position);
+
+        if (message.getSended()==0) {
+            // If the current user is the sender of the message
+            return 1;
+        } else {
+            // If some other user sent the message
+            return 0;
+        }
+    }
+
+    @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position){
         Message message = (Message) messages.get(position);
 

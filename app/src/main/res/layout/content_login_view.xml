@@ -37,8 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textEmailAddress"
-            android:text="prueba@prueba.com" />
+            android:inputType="textEmailAddress" />
 
         <TextView
             android:id="@+id/textView12"
@@ -51,8 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword"
-            android:text="prueba" />
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/button_login"

@@ -45,16 +45,13 @@ public class GenericView extends AppCompatActivity {
         rvGeneric = findViewById(R.id.rvGeneric);
         genericForward = findViewById(R.id.genericForward);
 
-        Log.v("ZZT", "Entra");
 
         Bundle data = getIntent().getExtras();
         int genericCode = data.getInt("genCode");
 
-        Log.v("ZZT", "gencode:"+ genericCode);
 
         switch (genericCode){
             case 1:
-                Log.v("ZZT", "Caso 1");
                 myGenerics = data.getParcelableArrayList("places");
                 checkPlaces();
                 break;

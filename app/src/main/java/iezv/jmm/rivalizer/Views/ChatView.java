@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -154,9 +155,11 @@ public class ChatView extends AppCompatActivity {
             }
         });
 
+
         usersDB.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Log.v("ZZZ", "SHOOTS FIRED!");
                 if(dataSnapshot.child(idChatRival).child("messages").exists()){
                     for(DataSnapshot child : dataSnapshot.getChildren()){
                         if(child.child("messages").exists()){
@@ -181,7 +184,7 @@ public class ChatView extends AppCompatActivity {
                     for(DataSnapshot child : dataSnapshot.getChildren()){
                         if(child.child("messages").exists()){
                             for(DataSnapshot mess : child.child("messages").getChildren()){
-                                if (mess.child("id_sender").getValue(String.class).equals(idChatRival)) {
+                                if (mess.child("message").child("id_sender").getValue(String.class).equals(idChatRival)) {
                                     Message message = new Message();
                                     message.setId_msg(mess.child("message").child("id_msg").getValue(String.class));
                                     message.setText_msg(mess.child("message").child("text_msg").getValue(String.class));

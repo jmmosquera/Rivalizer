@@ -18,12 +18,14 @@ public class ReceiveMessageHolder extends RecyclerView.ViewHolder {
     ReceiveMessageHolder(View itemView){
         super(itemView);
         messageText = (TextView) itemView.findViewById(R.id.text_message_body_r);
-        timeText = (TextView) itemView.findViewById(R.id.text_message_time_s);
+        timeText = (TextView) itemView.findViewById(R.id.text_message_time_r);
     }
 
     void bind(Message message){
         messageText.setText(message.getText_msg());
-        timeText.setText(formatDateTime(message.getDate_msg()).getHours());
+        int minute = (int) (Long.parseLong(message.getDate_msg()) / (1000 * 60)) % 60;
+        int hour = (int) (Long.parseLong(message.getDate_msg()) / (1000 * 60 * 60)) % 24;
+        timeText.setText(String.format("%02d",hour)+":"+String.format("%02d",minute));
     }
 
     private Date formatDateTime(String date_msg) {
