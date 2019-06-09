@@ -81,7 +81,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rivalGames"
-        android:layout_width="395dp"
+        android:layout_width="295dp"
         android:layout_height="75dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"

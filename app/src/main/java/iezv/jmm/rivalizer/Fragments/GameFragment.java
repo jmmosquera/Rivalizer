@@ -1,10 +1,16 @@
 package iezv.jmm.rivalizer.Fragments;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,6 +39,9 @@ import iezv.jmm.rivalizer.POJO.Game;
 import iezv.jmm.rivalizer.R;
 import iezv.jmm.rivalizer.Views.GameRegister;
 import iezv.jmm.rivalizer.Views.GameView;
+import iezv.jmm.rivalizer.Views.PlayerLocation;
+
+import static iezv.jmm.rivalizer.Views.PlayerLocation.MY_PERMISSIONS_REQUEST_LOCATION;
 
 public class GameFragment extends Fragment {
 
@@ -64,6 +73,7 @@ public class GameFragment extends Fragment {
         listener();
 
         setupSearch();
+        checkLocationPermission();
     }
 
 
@@ -210,6 +220,43 @@ public class GameFragment extends Fragment {
         return games;
 
 
+    }
+
+    public boolean checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Se requiere permiso para chequear su localización.")
+                        .setMessage("Activar esta funcionalidad nos permitirá presentarle información de forma más adecuada a sus intereses.")
+                        .setPositiveButton("CONTINUAR", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions(getActivity(),
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+            return false;
+        } else {
+            return true;
+        }
     }
 
 

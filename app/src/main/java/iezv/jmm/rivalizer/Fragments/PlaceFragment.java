@@ -294,16 +294,19 @@ public class PlaceFragment extends Fragment {
         Collections.sort(places, new Comparator<Place>() {
             @Override
             public int compare(Place o1, Place o2) {
-                if (Double.parseDouble(o1.getCoordinates().substring(0, o1.getCoordinates().length()-3).replaceAll(",",".")) ==
-                        Double.parseDouble(o2.getCoordinates().substring(0, o1.getCoordinates().length()-3).replaceAll(",",".")))
-                {
-                    return 0;
+                if(o1.getCoordinates()!=null&&o2.getCoordinates()!=null){
+                    if (Double.parseDouble(o1.getCoordinates().substring(0, o1.getCoordinates().length()-3).replaceAll(",",".")) ==
+                            Double.parseDouble(o2.getCoordinates().substring(0, o1.getCoordinates().length()-3).replaceAll(",",".")))
+                    {
+                        return 0;
+                    }
+                    else if (Double.parseDouble(o1.getCoordinates().substring(0, o1.getCoordinates().length()-3).replaceAll(",",".")) <
+                            Double.parseDouble(o2.getCoordinates().substring(0, o1.getCoordinates().length()-3).replaceAll(",",".")))
+                    {
+                        return -1;
+                    }
                 }
-                else if (Double.parseDouble(o1.getCoordinates().substring(0, o1.getCoordinates().length()-3).replaceAll(",",".")) <
-                        Double.parseDouble(o2.getCoordinates().substring(0, o1.getCoordinates().length()-3).replaceAll(",",".")))
-                {
-                    return -1;
-                }
+
                 return 1;
             }
         });
